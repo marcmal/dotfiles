@@ -40,7 +40,7 @@ rsync -av dotfiles/.bash_libs/pureline/configs/powerline_gruvbox.conf ~/.purelin
 echo "[ -f ~/pureline/pureline ] && source ~/pureline/pureline ~/.pureline.conf" >> ~/.bashrc
 ```
 
-## Navigation cheat sheet
+## Tmux navigation cheat sheet
 
 Prefix key - by default is set to <kbd>Control-a</kbd>
 
