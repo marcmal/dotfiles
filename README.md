@@ -1,7 +1,6 @@
 # Dotfiles
 
 ## Repository
-***
 
 **The repository contains**
 - Bash
@@ -14,12 +13,10 @@
 
 
 ## Requirements
-***
 By default both bash prompt and tmux uses powerline symbols thus any font [Powerline font](https://github.com/powerline/fonts) is required.
 
 
 ## Installation
-***
 
 ### Full installation
 
