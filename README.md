@@ -2,7 +2,7 @@
 
 ## Repository
 
-##### [Bash configuration](bash/README.md)
+##### [Bash configuration](bash)
 
 ###### Requirements
 - [Nerd Font](https://www.nerdfonts.com/) - as prompt uses powerline symbols and glyphs 
@@ -14,7 +14,7 @@
 make bash
 ```
 
-##### [Tmux configuration](tmux/README.md)
+##### [Tmux configuration](tmux)
 
 ###### Requirements
 - [Nerd Font](https://www.nerdfonts.com/) - as tmux uses powerline symbols and glyphs
@@ -24,7 +24,7 @@ make bash
 make tmux
 ```
 
-##### [Neovim configuration](nvim/README.md)
+##### [Neovim configuration](nvim)
 
 ###### Requirements
 - [Neovim 0.7.0+](https://github.com/neovim/neovim) - Please refer to [Neovim repository wiki](https://github.com/neovim/neovim/wiki/Installing-Neovim) for installation guide.
