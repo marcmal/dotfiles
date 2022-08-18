@@ -2,24 +2,38 @@
 
 ## Repository
 
-**The repository contains**
-- Bash
-    - Configuration file
-    - Bash utils
-- Tmux
-    - Configuration file
-    - Tmux themes
+##### [Bash configuration](bash/README.md)
 
+###### Requirements
+- [Nerd Font](https://www.nerdfonts.com/) - as prompt uses powerline symbols and glyphs 
+- [Oh-My-Posh](https://ohmyposh.dev/) - a prompt theme engine for any shell
+- (Optional) [FZF](https://github.com/junegunn/fzf) - a command-line fuzzy finder 
 
-## Requirements
-- [Nerd Font](https://www.nerdfonts.com/) - required as by default both bash prompt and tmux uses powerline symbols and glyphs
-- [Oh-My-Posh](https://ohmyposh.dev/) - A prompt theme engine for any shell
+###### Install
+```
+make bash
+```
 
-## Tmux navigation cheat sheet
+##### [Tmux configuration](tmux/README.md)
 
-Prefix key - by default is set to <kbd>Control-a</kbd>
+###### Requirements
+- [Nerd Font](https://www.nerdfonts.com/) - as tmux uses powerline symbols and glyphs
 
-<i>Prefix</i> - <kbd>h/j/k/l</kbd> - panes navigation  
-<i>Prefix</i> - <kbd>|</kbd> - vertical split  
-<i>Prefix</i> - <kbd>_</kbd>/<kbd>-</kbd> - horizontal split  
-<i>Prefix</i> - <kbd>n/p</kbd> - switch to next/previous window (optionally with <kbd>Shift+Left/Right</kbd>)
+###### Install
+```
+make tmux
+```
+
+##### [Neovim configuration](nvim/README.md)
+
+###### Requirements
+- [Neovim 0.7.0+](https://github.com/neovim/neovim) - Please refer to [Neovim repository wiki](https://github.com/neovim/neovim/wiki/Installing-Neovim) for installation guide.
+
+- [ripgrep](https://github.com/BurntSushi/ripgrep) - Required for grepping files inside Neovim (can be replaced by other grep tools)
+
+- [bat](https://github.com/sharkdp/bat) - Required for nice, syntax  highlighted files preview (if not present preview won't be colored - "cat" will be used)
+
+###### Install
+```
+make nvim
+```
