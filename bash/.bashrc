@@ -6,6 +6,7 @@ alias ll='ls -al'
 alias ..='cd ..'
 
 export EDITOR=nvim
+export BAT_THEME='gruvbox-dark'
 
 [ -f ~/.bash_libs/work.sh ] && source ~/.bash_libs/work.sh
 [ -f ~/.bash_libs/utils.sh ] && source ~/.bash_libs/utils.sh
