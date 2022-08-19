@@ -13,7 +13,7 @@ nvim: plug
 	@nvim -c PlugInstall -c qall
 
 plug:
-	@rm ${plug_path}
+	@rm -f ${plug_path}
 	@sh -c "curl -fLo ${plug_path} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 
 bash:
