@@ -1,20 +1,20 @@
-plug_path := ~/.local/share/nvim/site/autoload/plug.vim
+packer_path := ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-.PHONY: help nvim plug bash tmux
+.PHONY: help nvim packer bash tmux
 
 help:
 	@echo 'make nvim - configure nvim'
 	@echo 'make bash - configure bash'
 	@echo 'make tmux - configure tmux'
 
-nvim: plug
-	@rm -rf ~/.config/nvim
-	@cp -r nvim ~/.config/
-	@nvim -c PlugInstall -c qall
+nvim: packer
+	rm -rf ~/.config/nvim
+	cp -r nvim ~/.config/
+	nvim -u NONE -c "source ~/.config/nvim/init.lua" -c PackerSync
 
-plug:
-	@rm -f ${plug_path}
-	@sh -c "curl -fLo ${plug_path} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+packer:
+	rm -rf ${packer_path}
+	git clone --depth 1 https://github.com/wbthomason/packer.nvim ${packer_path}
 
 bash:
 	@cp -r bash/.bash_libs ~

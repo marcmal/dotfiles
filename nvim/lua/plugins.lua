@@ -1,39 +1,32 @@
-local Plug = vim.fn['plug#']
+return require('packer').startup(function(use)
+  -- Plugin Manager
+  use 'wbthomason/packer.nvim'
 
-vim.call('plug#begin', '~/.local/share/nvim/plugged')
+  -- Utils
+  use 'nvim-lua/plenary.nvim'
 
--- Utils
-Plug 'nvim-lua/plenary.nvim'
-Plug 'glts/vim-magnum'
-Plug 'glts/vim-radical'
+  -- Git
+  use 'lewis6991/gitsigns.nvim'
 
--- Language Support
-Plug ('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
-Plug 'nvim-treesitter/playground'
+  -- Navigation
+  use 'numToStr/Comment.nvim'
+  use 'kyazdani42/nvim-tree.lua'
+  use 'mg979/vim-visual-multi'
+  use 'windwp/nvim-autopairs'
+  use 'yamatsum/nvim-cursorline'
+  use 'nvim-telescope/telescope.nvim'
+  use 'folke/todo-comments.nvim'
+  use 'phaazon/hop.nvim'
 
--- Git
-Plug 'lewis6991/gitsigns.nvim'
-Plug 'tpope/vim-fugitive'
+  -- Language Support
+  use 'neovim/nvim-lspconfig'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/nvim-cmp'
+  use 'nvim-treesitter/nvim-treesitter'
 
--- Navigation
-Plug 'tpope/vim-commentary'
-Plug 'kyazdani42/nvim-tree.lua'
-Plug 'mg979/vim-visual-multi'
-Plug 'windwp/nvim-autopairs'
-Plug 'yamatsum/nvim-cursorline'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'folke/todo-comments.nvim'
-Plug 'phaazon/hop.nvim'
-
--- Lsp
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/nvim-cmp'
-
--- Themes
-Plug 'morhetz/gruvbox'
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'ryanoasis/vim-devicons'
-Plug 'kyazdani42/nvim-web-devicons'
-
-vim.call('plug#end')
+  -- Themes
+  use 'morhetz/gruvbox'
+  use 'nvim-lualine/lualine.nvim'
+  use 'ryanoasis/vim-devicons'
+  use 'kyazdani42/nvim-web-devicons'
+end)
