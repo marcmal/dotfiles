@@ -11,6 +11,7 @@ vim.opt.wrap = false
 vim.opt.updatetime = 100
 vim.opt.mouse = ''
 vim.opt.colorcolumn = '120'
+vim.opt.pumheight = 10
 
 local map = vim.api.nvim_set_keymap
 map('n', '<F4>', ':noh<CR>', { noremap = true })

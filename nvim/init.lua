@@ -1,7 +1,7 @@
 require('plugins')
 require('general-settings')
 require('autocomplete')
--- require('lsp-settings')
+require('lsp-settings')
 require('nvim-tree-settings')
 require('autopairs-settings')
 require('gitsigns-settings')
