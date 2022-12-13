@@ -11,9 +11,7 @@ require('packer').startup(function(use)
   -- Navigation
   use 'numToStr/Comment.nvim'
   use 'kyazdani42/nvim-tree.lua'
-  use 'mg979/vim-visual-multi'
   use 'windwp/nvim-autopairs'
-  use 'yamatsum/nvim-cursorline'
   use 'nvim-telescope/telescope.nvim'
   use 'folke/todo-comments.nvim'
   use 'phaazon/hop.nvim'
@@ -32,11 +30,11 @@ require('packer').startup(function(use)
 			{ "hrsh7th/vim-vsnip" },
 		}
 	}
-  use {'nvim-treesitter/nvim-treesitter', commit="6840b3740da5497730136c875e8f89cad314657b"}
+  use 'nvim-treesitter/nvim-treesitter'
+  use 'rafamadriz/friendly-snippets'
 
   -- Themes
-  use 'morhetz/gruvbox'
-  use 'olimorris/onedarkpro.nvim'
+  use 'ellisonleao/gruvbox.nvim'
   use 'nvim-lualine/lualine.nvim'
   use 'ryanoasis/vim-devicons'
   use 'kyazdani42/nvim-web-devicons'
