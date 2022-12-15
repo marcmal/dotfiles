@@ -1,17 +1,7 @@
-require('plugins')
-require('general-settings')
-require('autocomplete')
-require('lsp-settings')
-require('nvim-tree-settings')
-require('autopairs-settings')
-require('gitsigns-settings')
-require('tree-sitter-settings')
-require('custom-syntax-settings')
-require('telescope-settings')
-require('todo-comments-settings')
-require('work-specific-settings')
-require('hop-settings')
-require('comment-settings')
-require('dashboard-settings')
-require('themes.lualine-settings')
-require('themes.colorscheme-settings')
+my_config = {
+  use_powerline = true
+}
+
+require('plugins').configure()
+require('ui').configure()
+require('core').configure()
