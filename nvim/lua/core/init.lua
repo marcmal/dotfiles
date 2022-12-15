@@ -3,7 +3,7 @@ local M = {}
 local modules = {
   'core.general-settings',
   'core.autocomplete',
-  'core.lsp-settings',
+  -- 'core.lsp-settings',
   'core.nvim-tree-settings',
   'core.autopairs-settings',
   'core.gitsigns-settings',
