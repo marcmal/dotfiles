@@ -1,29 +1,44 @@
-vim.diagnostic.config({
-  virtual_text = false,
-  signs = true,
-  underline = true,
-  update_in_insert = false,
-  severity_sort = false,
-})
+local M = {}
 
-
-local signs = { Error = "●", Warn = "●", Hint = "●", Info = "●" }
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+function M:configure()
+  configureDiagnostics()
+  configureDiagnosticsMappings()
+  configureServers()
 end
 
 
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
-vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+function configureDiagnostics()
+  vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = false,
+  })
 
+  local signs = { Error = "●", Warn = "●", Hint = "●", Info = "●" }
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  end
+end
 
-local on_attach = function(client, bufnr)
+function configureDiagnosticsMappings()
+  local opts = { noremap=true, silent=true }
+  vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+end
+
+function configureServers()
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  require('lspconfig')['clangd'].setup { capabilities = capabilities, on_attach = onServerAttach }
+  require('lspconfig')['rust_analyzer'].setup { capabilities = capabilities, on_attach = onServerAttach }
+end
+
+function onServerAttach(client, bufnr)
+  local opts = { noremap=true, silent=true }
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -44,7 +59,4 @@ local on_attach = function(client, bufnr)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
-
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-require('lspconfig')['clangd'].setup { capabilities = capabilities, on_attach = on_attach }
-require('lspconfig')['rust_analyzer'].setup { capabilities = capabilities, on_attach = on_attach }
+return M

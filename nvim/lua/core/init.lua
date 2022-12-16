@@ -1,9 +1,7 @@
 local M = {}
 
-local modules = {
+local modules_deprecated = {
   'core.general-settings',
-  'core.autocomplete',
-  -- 'core.lsp-settings',
   'core.nvim-tree-settings',
   'core.autopairs-settings',
   'core.gitsigns-settings',
@@ -15,9 +13,18 @@ local modules = {
   'core.work-specific-settings'
 }
 
+local modules = {
+  'core.autocomplete',
+  'core.lsp'
+}
+
 function M.configure()
-  for _, module in ipairs(modules) do
+  for _, module in ipairs(modules_deprecated) do
     require(module)
+  end
+
+  for _, module in ipairs(modules) do
+    require(module).configure()
   end
 end
 
