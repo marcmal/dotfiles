@@ -1,12 +1,15 @@
 local M = {}
 
 function M.configure()
+  pcall(require, 'impatient')
+
   require('packer').startup(function(use)
     -- Plugin Manager
     use 'wbthomason/packer.nvim'
 
     -- Utils
     use 'nvim-lua/plenary.nvim'
+    use 'lewis6991/impatient.nvim'
 
     -- Git
     use 'lewis6991/gitsigns.nvim'
