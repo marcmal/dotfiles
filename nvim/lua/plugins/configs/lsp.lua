@@ -2,10 +2,8 @@ local M = {}
 
 function M:configure()
   configureDiagnostics()
-  configureDiagnosticsMappings()
   configureServers()
 end
-
 
 function configureDiagnostics()
   vim.diagnostic.config({
@@ -21,9 +19,7 @@ function configureDiagnostics()
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
   end
-end
 
-function configureDiagnosticsMappings()
   local opts = { noremap=true, silent=true }
   vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
@@ -32,7 +28,7 @@ function configureDiagnosticsMappings()
 end
 
 function configureServers()
-  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
   require('lspconfig')['clangd'].setup { capabilities = capabilities, on_attach = onServerAttach }
   require('lspconfig')['rust_analyzer'].setup { capabilities = capabilities, on_attach = onServerAttach }
 end
