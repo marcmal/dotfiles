@@ -7,7 +7,6 @@ require('packer').startup(function(use)
   -- Utils
   use 'nvim-lua/plenary.nvim'
   use 'lewis6991/impatient.nvim'
-  use 'rcarriga/nvim-notify'
 
   -- Git
   use {
