@@ -1,7 +1,10 @@
 my_config = {
-  use_powerline = true
+  use_powerline = true,
+  theme = 'onedark'
 }
 
+require('core.options')
 require('plugins').configure()
-require('ui').configure()
-require('core').configure()
+require('core.theme')
+pcall(require, 'core.work')
+
