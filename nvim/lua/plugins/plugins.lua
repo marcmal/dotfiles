@@ -8,15 +8,15 @@ require('packer').startup(function(use)
   use 'nvim-lua/plenary.nvim'
   use 'lewis6991/impatient.nvim'
 
-  -- Git
+  -- Navigation
   use {
     'lewis6991/gitsigns.nvim',
-    event = 'BufRead',
+    event = {'BufRead', 'BufNewFile'},
     config = function() require('plugins.configs.gitsigns') end,
   }
-
   use {
     'numToStr/Comment.nvim',
+    keys = { "gc" },
     config = function() require('Comment').setup{} end
   }
   use {
@@ -27,6 +27,7 @@ require('packer').startup(function(use)
   }
   use {
     'windwp/nvim-autopairs',
+    event = {'BufRead', 'BufNewFile'},
     config = function() require("nvim-autopairs").setup {} end
   }
   use {
@@ -41,44 +42,53 @@ require('packer').startup(function(use)
     setup = function() require('plugins.mappings.hop') end,
     config = function() require('hop').setup {} end
   }
-  use {
-    'goolord/alpha-nvim',
-    config = function() require'alpha'.setup(require'alpha.themes.startify'.config) end
-  }
 
-  -- Language Support
+  -- Language Support & Completion
   use {
     'neovim/nvim-lspconfig',
-    config = function() require('plugins.configs.lsp').configure{} end,
+    event = {'BufRead', 'BufNewFile'},
+    config = function() require('plugins.configs.lsp').configure{} end
   }
   use {
     'hrsh7th/nvim-cmp',
+    event = {'BufRead', 'BufNewFile'},
     config = function() require('plugins.configs.cmp').configure{} end,
-    requires = {
-      { "hrsh7th/cmp-nvim-lsp" },
-      { "hrsh7th/cmp-nvim-lua" },
-      { "hrsh7th/cmp-buffer" },
-      { "hrsh7th/cmp-path" },
-      { "hrsh7th/cmp-vsnip" },
-      { "hrsh7th/vim-vsnip" },
-    }
   }
+  use { 
+    'hrsh7th/cmp-nvim-lsp',
+    requires = 'nvim-cmp',
+    after = {'nvim-cmp'}
+  }
+  use { 'hrsh7th/cmp-nvim-lua', requires = 'nvim-cmp', after ='nvim-cmp' }
+  use { 'hrsh7th/cmp-buffer', requires = 'nvim-cmp', after ='nvim-cmp' }
+  use { 'hrsh7th/cmp-path', requires = 'nvim-cmp', after ='nvim-cmp' }
+  use { 'hrsh7th/vim-vsnip', requires = 'nvim-cmp', after ='nvim-cmp' }
+  use { 'hrsh7th/cmp-vsnip', requires = 'nvim-cmp', after ='nvim-cmp' }
+
   use {
     'nvim-treesitter/nvim-treesitter',
     module = "nvim-treesitter",
+    event = {'BufRead', 'BufNewFile' },
     cmd = require("util.lazy_load").treesitter_cmds,
     run = ":TSUpdate",
     config = function() require('plugins.configs.tree-sitter') end
   }
-  use 'rafamadriz/friendly-snippets'
+  use {
+    'rafamadriz/friendly-snippets',
+    event = {'BufRead', 'BufNewFile'},
+  }
 
-  -- Themes
+  -- UI
   use 'ellisonleao/gruvbox.nvim'
   use 'olimorris/onedarkpro.nvim'
   use {
     'nvim-lualine/lualine.nvim',
     config = function() require('plugins.configs.lualine') end
   }
-
+  use {
+    'goolord/alpha-nvim',
+    config = function() require'alpha'.setup(require'alpha.themes.startify'.config) end
+  }
   use 'kyazdani42/nvim-web-devicons'
+
 end)
