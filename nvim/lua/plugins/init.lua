@@ -1,8 +1,40 @@
 local M = {}
 
+function M.ensure_packer()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[ packadd packer.nvim ]]
+    return true
+  end
+
+  return false
+end
+
+function M.configure()
+  local packer_bootstrap = M.ensure_packer()
+  require('plugins.plugins')
+
+  if packer_bootstrap then
+    require('packer').sync()
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "PackerComplete",
+      callback = function()
+        require('packer').loader "nvim-treesitter"
+        pcall(vim.cmd.colorscheme, my_config.theme)
+      end,
+    })
+    return false
+  end
+
+  return true
+end
+
 function M.reload()
-  vim.cmd([[ PackerCompile ]])
-  vim.cmd([[ LuaCacheClear ]])
+  -- vim.cmd([[ PackerCompile ]])
+  -- vim.cmd([[ LuaCacheClear ]])
 end
 
 vim.cmd([[
@@ -11,10 +43,5 @@ vim.cmd([[
     autocmd BufWritePost plugins.lua source <afile> | lua require('plugins').reload()
   augroup end
 ]])
-
-function M.configure()
-  pcall(require, 'impatient')
-  require('plugins.plugins')
-end
 
 return M
