@@ -23,7 +23,6 @@ function M.configure()
       pattern = "PackerComplete",
       callback = function()
         require('packer').loader "nvim-treesitter"
-        pcall(vim.cmd.colorscheme, my_config.theme)
       end,
     })
     return false

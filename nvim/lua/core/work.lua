@@ -8,6 +8,6 @@ vim.cmd([[
 
 vim.api.nvim_create_user_command('Format', function()
   local filename = vim.fn.expand '%:p'
-  local cmd = 'silent !/proj/lte_twh/tools/codestyler/1.0.21/bin/codestyler --config /proj/lte_twh/tools/codestyler/1.0.21/default.clang-format -ans ' .. filename
+  local cmd = 'silent !$codestylerPATH/bin/codestyler --config $codestylerPATH/default.clang-format -ans ' .. filename
   vim.cmd(cmd)
 end, {})

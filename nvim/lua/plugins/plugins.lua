@@ -44,11 +44,11 @@ require('packer').startup(function(use)
   }
 
   -- Language Support & Completion
-  use {
-    'neovim/nvim-lspconfig',
-    event = {'BufRead', 'BufNewFile'},
-    config = function() require('plugins.configs.lsp').configure{} end
-  }
+  -- use {
+  --   'neovim/nvim-lspconfig',
+  --   event = {'BufRead', 'BufNewFile'},
+  --   config = function() require('plugins.configs.lsp').configure{} end
+  -- }
   use {
     'hrsh7th/nvim-cmp',
     event = {'BufRead', 'BufNewFile'},
@@ -80,7 +80,10 @@ require('packer').startup(function(use)
 
   -- UI
   use 'ellisonleao/gruvbox.nvim'
-  use 'olimorris/onedarkpro.nvim'
+  use {
+    'olimorris/onedarkpro.nvim',
+    config = function() require('core.theme') end
+  }
   use {
     'nvim-lualine/lualine.nvim',
     config = function() require('plugins.configs.lualine') end
