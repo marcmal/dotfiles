@@ -7,6 +7,10 @@ require('packer').startup(function(use)
   -- Utils
   use 'nvim-lua/plenary.nvim'
   use 'lewis6991/impatient.nvim'
+  use {
+    'powerman/vim-plugin-AnsiEsc',
+    cmd = 'AnsiEsc'
+  }
 
   -- Navigation
   use {
