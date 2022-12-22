@@ -17,8 +17,8 @@ Leader key - by default is set to <kbd>\\</kbd>
 <i>Leader</i> - <kbd>g</kbd> - open grep window  
 <i>Leader</i> - <kbd>s</kbd> - open grep with word under cursor
 
-<i>Leader</i> - <kbd>n/p</kbd> - move up/down inside filter window  
-<i>Leader</i> - <kbd>t/v/x</kbd> - open file in new tab/horizontal split/vertical split  
+<kbd>Control + n/p</kbd> - move up/down inside filter window  
+<kbd>Control + t/v/x</kbd> - open file in new tab/horizontal split/vertical split  
 
 ### LSP
 <kbd>gd</kbd> - go to definition  
@@ -35,11 +35,5 @@ Leader key - by default is set to <kbd>\\</kbd>
 
 ### Comments
 <kbd>gcc</kbd> - toggle comment
-
-### Multiple cursors
-<kbd>Control + n</kbd> - start selecting words  
-<kbd>Control + Up/Down</kbd> - create cursors vertically  
-<kbd>n/N</kbd> - select next/previous occurrence  
-<kbd>i/a/I/A</kbd> - start insert mode   
 
 For more advanced usage please refer directly to configured mapping or take a look at corresponding plugin default mapping in its doc.
