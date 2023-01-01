@@ -13,19 +13,32 @@ vim.opt.mouse = ''
 vim.opt.colorcolumn = '120'
 vim.opt.pumheight = 10
 
-local map = vim.api.nvim_set_keymap
-map('n', '<F4>', ':noh<CR>', { noremap = true })
-map('n', '<bar>', ':vsplit<CR>', { noremap = true })
-map('n', '_', ':split<CR>', { noremap = true })
-map('n', '<C-k>', ':wincmd k<CR>', { noremap = true })
-map('n', '<C-j>', ':wincmd j<CR>', { noremap = true })
-map('n', '<C-h>', ':wincmd h<CR>', { noremap = true })
-map('n', '<C-l>', ':wincmd l<CR>', { noremap = true })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
-map('n', '<C-e>', ':tabnext<CR>', { noremap = true })
-map('n', '<C-q>', ':tabprevious<CR>', { noremap = true })
+vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
-map('n', 'gh', ":let @/='\\<'.expand('<cword>').'\\>' <bar> set hls <CR>", { noremap = true })
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+vim.keymap.set('n', '<F4>', ':noh<CR>')
+vim.keymap.set('n', '<bar>', ':vsplit<CR>')
+vim.keymap.set('n', '_', ':split<CR>')
+vim.keymap.set('n', '<C-k>', ':wincmd k<CR>')
+vim.keymap.set('n', '<C-j>', ':wincmd j<CR>')
+vim.keymap.set('n', '<C-h>', ':wincmd h<CR>')
+vim.keymap.set('n', '<C-l>', ':wincmd l<CR>')
+
+vim.keymap.set('n', '<C-e>', ':tabnext<CR>')
+vim.keymap.set('n', '<C-q>', ':tabprevious<CR>')
+
+vim.keymap.set('n', 'gh', ":let @/='\\<'.expand('<cword>').'\\>' <bar> set hls <CR>")
+
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.cmd [[
     autocmd BufNewFile,BufRead *.log setfiletype log
