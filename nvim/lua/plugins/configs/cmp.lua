@@ -45,7 +45,7 @@ function M.configure()
           vim_item.abbr = string.sub(vim_item.abbr, 1, max_width - 1) .. icons.ui.Ellipsis
         end
 
-        vim_item.kind = M.config.formatting.kind_icons[vim_item.kind]
+        vim_item.kind = ' ' .. M.config.formatting.kind_icons[vim_item.kind] .. ' '
         vim_item.menu = M.config.formatting.source_names[entry.source.name]
         vim_item.dup = M.config.formatting.duplicates[entry.source.name] or M.config.formatting.duplicates_default
         return vim_item

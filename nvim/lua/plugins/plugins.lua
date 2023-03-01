@@ -88,6 +88,10 @@ require('packer').startup(function(use)
     config = function() require('core.theme') end
   }
   use {
+    'catppuccin/nvim',
+    config = function() require('core.theme') end
+  }
+  use {
     'nvim-lualine/lualine.nvim',
     config = function() require('plugins.configs.lualine') end
   }
