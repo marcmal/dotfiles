@@ -1,5 +1,6 @@
 my_config = {
-  use_powerline = true
+  use_powerline = true,
+  lsp_enabled = false
 }
 
 require('core.options')

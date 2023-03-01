@@ -48,26 +48,26 @@ require('packer').startup(function(use)
   }
 
   -- Language Support & Completion
-  -- use {
-  --   'neovim/nvim-lspconfig',
-  --   event = {'BufRead', 'BufNewFile'},
-  --   config = function() require('plugins.configs.lsp').configure{} end
-  -- }
+  use {
+    'neovim/nvim-lspconfig',
+    event = {'BufRead', 'BufNewFile'},
+    config = function() require('plugins.configs.lsp').configure{} end,
+    cond = function() return my_config.lsp_enabled end
+  }
+  use { 
+    'hrsh7th/cmp-nvim-lsp',
+    requires = {'hrsh7th/nvim-cmp', 'neovim/nvim-lspconfig'},
+    after = {'nvim-cmp'},
+    cond = function() return my_config.lsp_enabled end
+  }
+
   use {
     'hrsh7th/nvim-cmp',
     event = {'BufRead', 'BufNewFile'},
     config = function() require('plugins.configs.cmp').configure{} end,
   }
-  use { 
-    'hrsh7th/cmp-nvim-lsp',
-    requires = 'nvim-cmp',
-    after = {'nvim-cmp'}
-  }
-  use { 'hrsh7th/cmp-nvim-lua', requires = 'nvim-cmp', after ='nvim-cmp' }
   use { 'hrsh7th/cmp-buffer', requires = 'nvim-cmp', after ='nvim-cmp' }
   use { 'hrsh7th/cmp-path', requires = 'nvim-cmp', after ='nvim-cmp' }
-  use { 'hrsh7th/vim-vsnip', requires = 'nvim-cmp', after ='nvim-cmp' }
-  use { 'hrsh7th/cmp-vsnip', requires = 'nvim-cmp', after ='nvim-cmp' }
 
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -77,13 +77,12 @@ require('packer').startup(function(use)
     run = ":TSUpdate",
     config = function() require('plugins.configs.tree-sitter') end
   }
-  use {
-    'rafamadriz/friendly-snippets',
-    event = {'BufRead', 'BufNewFile'},
-  }
 
   -- UI
-  use 'ellisonleao/gruvbox.nvim'
+  use {
+    'ellisonleao/gruvbox.nvim',
+    config = function() require('core.theme') end
+  }
   use {
     'olimorris/onedarkpro.nvim',
     config = function() require('core.theme') end

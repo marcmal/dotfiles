@@ -32,8 +32,8 @@ function M.configure()
 end
 
 function M.reload()
-  vim.cmd([[ PackerCompile ]])
-  vim.cmd([[ LuaCacheClear ]])
+  -- vim.cmd([[ PackerCompile ]])
+  -- vim.cmd([[ LuaCacheClear ]])
 end
 
 vim.cmd([[
