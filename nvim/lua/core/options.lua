@@ -14,7 +14,7 @@ vim.opt.colorcolumn = '120'
 vim.opt.pumheight = 10
 vim.opt.showcmd = false
 vim.opt.showmode = false
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")

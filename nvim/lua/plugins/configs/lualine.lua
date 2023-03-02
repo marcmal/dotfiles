@@ -1,6 +1,5 @@
-local theme = require('lualine.themes.onedark')
+local theme = require('lualine.themes.catppuccin')
 local colors = require("catppuccin.palettes").get_palette "macchiato"
--- theme.normal.c.bg = colors.base
 theme.normal.c.bg = require('gruvbox.palette').colors.dark0
 
 local opts = {
@@ -14,7 +13,7 @@ local space = {
   function()
     return " "
   end,
-  color = { bg = colors.base, fg = "#80A7EA" },
+  color = { bg = theme.normal.c.bg, fg = "#80A7EA" },
 }
 
 local mode = {
