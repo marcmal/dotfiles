@@ -14,5 +14,5 @@ bash:
 	@cp bash/.bashrc ~
 
 tmux:
-	@cp -r tmux/.tmux_libs ~
+	@cp -r tmux/.tmux ~
 	@cp tmux/.tmux.conf ~
