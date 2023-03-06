@@ -77,6 +77,11 @@ local tabs = {
   max_length = vim.o.columns,
   mode = 2,
   separator = opts.separator,
+  section_separators = { left = opts.separator.right, right = opts.separator.left },
+  tabs_color = {
+    active = { bg = colors.sapphire, fg = colors.base },
+    inactive = { bg = colors.surface0, fg = colors.text }
+  },
 }
 
 local function getLspName()
