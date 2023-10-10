@@ -1,9 +1,3 @@
-local present, telescope = pcall(require, "telescope")
-
-if not present then
-  return
-end
-
 local config = {
   defaults = {
     vimgrep_arguments = {
@@ -23,4 +17,4 @@ local config = {
   }
 }
 
-require('telescope').setup(config)
+return config

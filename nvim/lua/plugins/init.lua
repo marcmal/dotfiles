@@ -1,46 +1,27 @@
 local M = {}
 
-function M.ensure_packer()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+M.lazy_config = {
+  defaults = { lazy = true }
+}
 
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[ packadd packer.nvim ]]
-    return true
+function M.bootstrap_manager()
+  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+  if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "https://github.com/folke/lazy.nvim.git",
+      "--branch=stable", -- latest stable release
+      lazypath,
+    })
   end
-
-  return false
+  vim.opt.rtp:prepend(lazypath)
 end
 
 function M.configure()
-  local packer_bootstrap = M.ensure_packer()
-  require('plugins.plugins')
-
-  if packer_bootstrap then
-    require('packer').sync()
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "PackerComplete",
-      callback = function()
-        require('packer').loader "nvim-treesitter"
-      end,
-    })
-    return false
-  end
-
-  return true
+  M.bootstrap_manager()
+  require("lazy").setup(require('plugins.plugins'), M.lazy_config)
 end
-
-function M.reload()
-  -- vim.cmd([[ PackerCompile ]])
-  -- vim.cmd([[ LuaCacheClear ]])
-end
-
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | lua require('plugins').reload()
-  augroup end
-]])
 
 return M

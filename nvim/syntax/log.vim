@@ -6,6 +6,7 @@ syn match log_error         '[A-Za-z0-9_./]*ERR[A-Za-z0-9_./]*'
 syn match log_error         '[A-Za-z0-9_./]*FAIL[A-Za-z0-9_./]*'
 syn match log_error         '[A-Za-z0-9_./]*FATAL[A-Za-z0-9_./]*'
 syn match log_error         '[A-Za-z0-9_./]*error[A-Za-z0-9_./]*'
+syn match log_error         '[A-Za-z0-9_./]*ABN[A-Za-z0-9_./]*'
 
 syn match log_warning       '[A-Za-z0-9_./]*WARN[A-Za-z0-9_./]*'
 syn match log_warning       '[A-Za-z0-9_./]*WRN[A-Za-z0-9_./]*'

@@ -1,104 +1,165 @@
-pcall(require, 'impatient')
-
-require('packer').startup(function(use)
-  -- Plugin Manager
-  use 'wbthomason/packer.nvim'
-
-  -- Utils
-  use 'nvim-lua/plenary.nvim'
-  use 'lewis6991/impatient.nvim'
-  use {
-    'powerman/vim-plugin-AnsiEsc',
-    cmd = 'AnsiEsc'
-  }
-
+local plugins = {
   -- Navigation
-  use {
-    'lewis6991/gitsigns.nvim',
-    event = {'BufRead', 'BufNewFile'},
-    config = function() require('plugins.configs.gitsigns') end,
-  }
-  use {
-    'numToStr/Comment.nvim',
-    keys = { "gc" },
-    config = function() require('Comment').setup{} end
-  }
-  use {
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    cmd = "Telescope",
+    init = function()
+      require('plugins.mappings.telescope')
+    end,
+    opts = function()
+      return require "plugins.configs.telescope"
+    end,
+    config = function(_, opts)
+      require('telescope').setup(opts)
+    end,
+  },
+
+  {
     'kyazdani42/nvim-tree.lua',
     cmd = require('util.lazy_load').nvimtree_cmds,
-    setup = function() require('plugins.mappings.nvim-tree') end,
-    config = function() require('plugins.configs.nvim-tree') end
-  }
-  use {
+    opts = function()
+      return require "plugins.configs.nvim-tree"
+    end,
+    init = function() require('plugins.mappings.nvim-tree') end,
+    config = function(_, opts)
+      require('nvim-tree').setup(opts)
+    end,
+  },
+
+  {
     'windwp/nvim-autopairs',
-    event = {'BufRead', 'BufNewFile'},
+    event = { 'BufRead', 'BufNewFile' },
     config = function() require("nvim-autopairs").setup {} end
-  }
-  use {
-    'nvim-telescope/telescope.nvim',
-    cmd = "Telescope",
-    setup = function() require('plugins.mappings.telescope') end,
-    config = function() require('plugins.configs.telescope') end
-  }
-  use {
+  },
+
+  {
     'phaazon/hop.nvim',
     cmd = require('util.lazy_load').hop_cmds,
-    setup = function() require('plugins.mappings.hop') end,
+    init = function() require('plugins.mappings.hop') end,
     config = function() require('hop').setup {} end
-  }
+  },
 
-  -- Language Support & Completion
-  use {
+  {
+    "lewis6991/gitsigns.nvim",
+    event = { 'BufRead', 'BufNewFile' },
+    opts = function()
+      return require "plugins.configs.gitsigns"
+    end,
+    config = function(_, opts)
+      require('gitsigns').setup(opts)
+    end,
+  },
+
+  {
+    'numToStr/Comment.nvim',
+    keys = {
+      { "gcc", mode = "n",          desc = "Comment toggle current line" },
+      { "gc",  mode = { "n", "o" }, desc = "Comment toggle linewise" },
+      { "gc",  mode = "x",          desc = "Comment toggle linewise (visual)" },
+      { "gbc", mode = "n",          desc = "Comment toggle current block" },
+      { "gb",  mode = { "n", "o" }, desc = "Comment toggle blockwise" },
+      { "gb",  mode = "x",          desc = "Comment toggle blockwise (visual)" },
+    },
+    config = function() require('Comment').setup {} end
+  },
+
+  -- Language Support
+  {
+    "williamboman/mason.nvim",
+    lazy = false,
+    -- cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
+    opts = function()
+      return require "plugins.configs.mason"
+    end,
+    config = function(_, opts)
+      require("mason").setup(opts)
+
+      vim.api.nvim_create_user_command("MasonInstallAll", function()
+        vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
+      end, {})
+    end,
+  },
+
+  {
     'neovim/nvim-lspconfig',
-    event = {'BufRead', 'BufNewFile'},
-    config = function() require('plugins.configs.lsp').configure{} end,
-    cond = function() return my_config.lsp_enabled end
-  }
-  use { 
-    'hrsh7th/cmp-nvim-lsp',
-    requires = {'hrsh7th/nvim-cmp', 'neovim/nvim-lspconfig'},
-    after = {'nvim-cmp'},
-    cond = function() return my_config.lsp_enabled end
-  }
+    event = { 'BufRead', 'BufNewFile' },
+    config = function() require('plugins.configs.lsp').configure {} end
+  },
 
-  use {
+  {
     'hrsh7th/nvim-cmp',
-    event = {'BufRead', 'BufNewFile'},
-    config = function() require('plugins.configs.cmp').configure{} end,
-  }
-  use { 'hrsh7th/cmp-buffer', requires = 'nvim-cmp', after ='nvim-cmp' }
-  use { 'hrsh7th/cmp-path', requires = 'nvim-cmp', after ='nvim-cmp' }
+    event = { 'InsertEnter' },
+    opts = function()
+      return require "plugins.configs.cmp"
+    end,
+    config = function(_, opts)
+      require('cmp').setup(opts)
+    end,
+    dependencies = {
+      {
+        "saadparwaiz1/cmp_luasnip",
+        "hrsh7th/cmp-nvim-lua",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
+      },
+    }
+  },
 
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    module = "nvim-treesitter",
-    event = {'BufRead', 'BufNewFile' },
-    cmd = require("util.lazy_load").treesitter_cmds,
-    run = ":TSUpdate",
-    config = function() require('plugins.configs.tree-sitter') end
-  }
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { 'BufRead', 'BufNewFile' },
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    build = ":TSUpdate",
+    opts = function()
+      return require('plugins.configs.tree-sitter')
+    end,
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+  },
+
+  -- Utils
+  { "nvim-lua/plenary.nvim" },
+  {
+    'powerman/vim-plugin-AnsiEsc',
+    cmd = 'AnsiEsc'
+  },
 
   -- UI
-  use {
+  {
     'ellisonleao/gruvbox.nvim',
-    config = function() require('core.theme') end
-  }
-  use {
-    'olimorris/onedarkpro.nvim',
-    config = function() require('core.theme') end
-  }
-  use {
-    'catppuccin/nvim',
-    config = function() require('core.theme') end
-  }
-  use {
-    'nvim-lualine/lualine.nvim',
-    config = function() require('plugins.configs.lualine') end
-  }
-  use {
-    'goolord/alpha-nvim',
-    config = function() require'alpha'.setup(require'alpha.themes.startify'.config) end
-  }
-  use 'kyazdani42/nvim-web-devicons'
+    lazy = false,
+    config = function(_, _)
+      require('core.theme')
+    end,
+  },
 
-end)
+  {
+    'nvim-lualine/lualine.nvim',
+    lazy = false,
+    opts = function()
+      return require('plugins.configs.lualine')
+    end,
+    config = function(_, opts)
+      require('lualine').setup(opts)
+    end,
+  },
+
+  {
+    'catppuccin/nvim'
+  },
+
+  {
+    'goolord/alpha-nvim',
+    lazy = false,
+    config = function() require 'alpha'.setup(require 'alpha.themes.startify'.config) end
+  },
+
+  {
+    'kyazdani42/nvim-web-devicons'
+  }
+}
+
+return plugins

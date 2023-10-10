@@ -1,6 +1,7 @@
 local theme = require('lualine.themes.catppuccin')
 local colors = require("catppuccin.palettes").get_palette "macchiato"
-theme.normal.c.bg = require('gruvbox.palette').colors.dark0
+local icons = require('util.icons')
+theme.normal.c.bg = require('gruvbox').palette.dark0
 
 local opts = {
   separator = { left = '', right = '' },
@@ -18,7 +19,7 @@ local space = {
 
 local mode = {
   'mode',
-  fmt = function(str) return " " end,
+  fmt = function(_) return " " end,
   separator = { right = opts.separator.right },
 }
 
@@ -89,7 +90,7 @@ local function getLspName()
   local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
   local clients = vim.lsp.get_active_clients()
   if next(clients) == nil then
-  return " " .. msg
+    return " " .. msg
   end
   for _, client in ipairs(clients) do
     local filetypes = client.config.filetypes
@@ -104,6 +105,12 @@ local diagnostics = {
   'diagnostics',
   color = { bg = "#313244", fg = "#80A7EA" },
   separator = opts.separator,
+  symbols = {
+    error = icons.diagnostics.Error .. ' ',
+    warn = icons.diagnostics.Warning .. ' ',
+    info = icons.diagnostics.Information .. ' ',
+    hint = icons.diagnostics.Hint .. ' '
+  },
 }
 
 local lsp = {
@@ -114,7 +121,8 @@ local lsp = {
   color = { bg = colors.red, fg = "#1e1e2e" },
 }
 
-require('lualine').setup {
+
+local config = {
   options = {
     icons_enabled = true,
     theme = theme,
@@ -189,3 +197,5 @@ require('lualine').setup {
   winbar = {},
   inactive_winbar = {},
 }
+
+return config
