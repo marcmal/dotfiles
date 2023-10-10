@@ -1,7 +1,7 @@
 vim.o.background = "dark"
 local C = require("catppuccin.palettes").get_palette("macchiato")
 
-require("gruvbox").setup({
+local config = {
   undercurl = true,
   underline = true,
   bold = true,
@@ -42,7 +42,7 @@ require("gruvbox").setup({
     CmpItemKindCopilot = { fg = C.base, bg = C.teal },
   },
   dim_inactive = false,
-  transparent_mode = false,
-})
+  transparent_mode = false
+}
 
-vim.cmd("colorscheme gruvbox")
+return config

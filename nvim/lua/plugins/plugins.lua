@@ -5,7 +5,7 @@ local plugins = {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     cmd = "Telescope",
     init = function()
-      require('plugins.mappings.telescope')
+      require('core.utils').load_mappings('telescope')
     end,
     opts = function()
       return require "plugins.configs.telescope"
@@ -17,11 +17,13 @@ local plugins = {
 
   {
     'kyazdani42/nvim-tree.lua',
-    cmd = require('util.lazy_load').nvimtree_cmds,
+    cmd = { "NvimTreeOpen", "NvimTreeClose", "NvimTreeFindFile", "NvimTreeToggle" },
     opts = function()
       return require "plugins.configs.nvim-tree"
     end,
-    init = function() require('plugins.mappings.nvim-tree') end,
+    init = function()
+      require('core.utils').load_mappings('nvim_tree')
+    end,
     config = function(_, opts)
       require('nvim-tree').setup(opts)
     end,
@@ -35,8 +37,10 @@ local plugins = {
 
   {
     'phaazon/hop.nvim',
-    cmd = require('util.lazy_load').hop_cmds,
-    init = function() require('plugins.mappings.hop') end,
+    cmd = { "HopWord", "HopPattern", "HopLineStart" },
+    init = function()
+      require('core.utils').load_mappings('hop')
+    end,
     config = function() require('hop').setup {} end
   },
 
@@ -98,6 +102,12 @@ local plugins = {
     end,
     dependencies = {
       {
+        "L3MON4D3/LuaSnip",
+        dependencies = "rafamadriz/friendly-snippets",
+        opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+      },
+
+      {
         "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-nvim-lsp",
@@ -131,9 +141,16 @@ local plugins = {
   {
     'ellisonleao/gruvbox.nvim',
     lazy = false,
-    config = function(_, _)
-      require('core.theme')
+    opts = function(_, _)
+      require('plugins.configs.gruxbox')
     end,
+    config = function(_, opts)
+      require('gruvbox').setup(opts)
+      vim.cmd("colorscheme gruvbox")
+    end,
+    dependencies = {
+      'catppuccin/nvim'
+    }
   },
 
   {
@@ -145,10 +162,6 @@ local plugins = {
     config = function(_, opts)
       require('lualine').setup(opts)
     end,
-  },
-
-  {
-    'catppuccin/nvim'
   },
 
   {

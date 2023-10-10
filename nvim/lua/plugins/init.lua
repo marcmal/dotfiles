@@ -4,6 +4,11 @@ M.lazy_config = {
   defaults = { lazy = true }
 }
 
+function M.configure()
+  M.bootstrap_manager()
+  require("lazy").setup(require('plugins.plugins'), M.lazy_config)
+end
+
 function M.bootstrap_manager()
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
   if not vim.loop.fs_stat(lazypath) then
@@ -17,11 +22,6 @@ function M.bootstrap_manager()
     })
   end
   vim.opt.rtp:prepend(lazypath)
-end
-
-function M.configure()
-  M.bootstrap_manager()
-  require("lazy").setup(require('plugins.plugins'), M.lazy_config)
 end
 
 return M
