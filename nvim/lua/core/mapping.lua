@@ -2,30 +2,30 @@ local M = {}
 
 M.general = {
   v = {
-    ["J"] = { ":m '>+1<CR>gv=gv", "" },
-    ["K"] = { ":m '<-2<CR>gv=gv", "" },
+    ["J"] = { ":m '>+1<CR>gv=gv" },
+    ["K"] = { ":m '<-2<CR>gv=gv" },
   },
 
   n = {
-    ["J"] = { "mzJ`z", "" },
-    ["<C-d>"] = { "<C-d>zz", "" },
-    ["<C-u>"] = { "<C-u>zz", "" },
+    ["J"] = { "mzJ`z" },
+    ["<C-d>"] = { "<C-d>zz" },
+    ["<C-u>"] = { "<C-u>zz" },
 
-    ["n"] = { "nzzzv", "" },
-    ["N"] = { "Nzzzv", "" },
+    ["n"] = { "nzzzv" },
+    ["N"] = { "Nzzzv" },
 
-    ["<ESC>"] = { ":noh<CR>", "" },
-    ["<bar>"] = { ":vsplit<CR>", "" },
-    ["_"] = { ":split<CR>", "" },
-    ["<C-k>"] = { ':wincmd k<CR>', "" },
-    ["<C-l>"] = { ':wincmd l<CR>', "" },
-    ["<C-h>"] = { ':wincmd h<CR>', "" },
-    ["<C-j>"] = { ':wincmd j<CR>', "" },
+    ["<ESC>"] = { ":noh<CR>" },
+    ["<bar>"] = { ":vsplit<CR>" },
+    ["_"] = { ":split<CR>" },
+    ["<C-k>"] = { ':wincmd k<CR>' },
+    ["<C-l>"] = { ':wincmd l<CR>' },
+    ["<C-h>"] = { ':wincmd h<CR>' },
+    ["<C-j>"] = { ':wincmd j<CR>' },
 
-    ["<C-e>"] = { ':tabnext <CR>', "" },
-    ["<C-q>"] = { ':tabprev <CR>', "" },
+    ["<C-e>"] = { ':tabnext <CR>' },
+    ["<C-q>"] = { ':tabprev <CR>' },
 
-    ["gh"] = { ":let @/='\\<'.expand('<cword>').'\\>' <bar> set hls <CR>", "" },
+    ["gh"] = { ":let @/='\\<'.expand('<cword>').'\\>' <bar> set hls <CR>" },
   }
 }
 
@@ -109,9 +109,9 @@ M.gitsigns = {
 
 M.hop = {
   n = {
-    ["<leader><leader>w"] = { "<cmd> HopWord <CR>", "" },
-    ["<leader><leader>p"] = { "<cmd> HopPattern <CR>", "" },
-    ["<leader><leader>l"] = { "<cmd> HopLineStart <CR>", "" },
+    ["<leader><leader>w"] = { "<cmd> HopWord <CR>" },
+    ["<leader><leader>p"] = { "<cmd> HopPattern <CR>" },
+    ["<leader><leader>l"] = { "<cmd> HopLineStart <CR>" },
   }
 }
 
