@@ -1,5 +1,5 @@
 vim.o.background = "dark"
-local C = require("catppuccin.palettes").get_palette("macchiato")
+local C = require('ui.theme').palette
 
 local config = {
   undercurl = true,

@@ -1,7 +1,7 @@
-local theme = require('lualine.themes.catppuccin')
-local colors = require("catppuccin.palettes").get_palette "macchiato"
-local icons = require('util.icons')
-theme.normal.c.bg = require('gruvbox').palette.dark0
+local icons = require('ui.icons')
+local ui_theme = require('ui.theme')
+local theme = ui_theme.lualine_theme_config
+local colors = ui_theme.palette
 
 local opts = {
   separator = { left = '', right = '' },

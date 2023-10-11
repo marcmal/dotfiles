@@ -142,11 +142,10 @@ local plugins = {
     'ellisonleao/gruvbox.nvim',
     lazy = false,
     opts = function(_, _)
-      require('plugins.configs.gruxbox')
+      require('plugins.configs.gruvbox')
     end,
     config = function(_, opts)
       require('gruvbox').setup(opts)
-      vim.cmd("colorscheme gruvbox")
     end,
     dependencies = {
       'catppuccin/nvim'
@@ -162,6 +161,10 @@ local plugins = {
     config = function(_, opts)
       require('lualine').setup(opts)
     end,
+    dependencies = {
+      'catppuccin/nvim',
+      'ellisonleao/gruvbox.nvim'
+    }
   },
 
   {

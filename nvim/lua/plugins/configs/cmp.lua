@@ -1,5 +1,5 @@
 local cmp = require('cmp')
-local icons = require('util.icons')
+local icons = require('ui.icons')
 
 local config = {
   snippet = {
