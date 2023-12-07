@@ -14,16 +14,16 @@ local function load_gruvbox()
 end
 
 local function load_catppuccin()
-  local palette = require("catppuccin.palettes").get_palette("frappe")
+  local palette = require("catppuccin.palettes").get_palette("macchiato")
   local lualine_theme = require('lualine.themes.catppuccin')
   lualine_theme.normal.c.bg = palette.base
 
   M.lualine_theme_config = lualine_theme
-  M.theme = 'catppuccin-frappe'
+  M.theme = 'catppuccin-macchiato'
   M.palette = palette
 end
 
-load_gruvbox()
--- load_catppuccin()
+-- load_gruvbox()
+load_catppuccin()
 
 return M

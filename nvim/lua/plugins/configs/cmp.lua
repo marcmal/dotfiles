@@ -12,11 +12,10 @@ local config = {
   },
   window = {
     completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered()
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },
-    max_width = 80,
     kind_icons = icons.kind,
     source_names = {
       nvim_lsp = "(LSP)",
@@ -42,6 +41,7 @@ local config = {
       icon = " " .. icon .. " "
       item.menu = entry.source.name and "   (" .. item.kind .. ")" or ""
       item.kind = icon
+      item.abbr = string.sub(item.abbr, 1, 20)
       return item
     end,
   },
