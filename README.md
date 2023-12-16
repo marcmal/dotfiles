@@ -27,11 +27,9 @@ make tmux
 ### [Neovim configuration](nvim)
 
 #### Requirements
-- [Neovim 0.7.0+](https://github.com/neovim/neovim) - Please refer to [Neovim repository wiki](https://github.com/neovim/neovim/wiki/Installing-Neovim) for installation guide.
+- [Neovim](https://github.com/neovim/neovim) - Please refer to [Neovim repository wiki](https://github.com/neovim/neovim/wiki/Installing-Neovim) for installation guide.
 
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - Required for grepping files inside Neovim (can be replaced by other grep tools)
-
-- [bat](https://github.com/sharkdp/bat) - Required for nice, syntax  highlighted files preview (if not present preview won't be colored - "cat" will be used)
 
 #### Install
 ```
