@@ -68,6 +68,13 @@ local plugins = {
     config = function() require('Comment').setup {} end
   },
 
+  -- lazy
+  {
+    "sontungexpt/stcursorword",
+    event = "VeryLazy",
+    config = true,
+  },
+
   -- Language Support
   {
     "williamboman/mason.nvim",
@@ -137,6 +144,15 @@ local plugins = {
   {
     'powerman/vim-plugin-AnsiEsc',
     cmd = 'AnsiEsc'
+  },
+
+  {
+    'marmal95/nvim-cursor-number',
+    cmd = { 'ConvertCursorNumber' },
+    config = function(_, opts)
+      require('cursor_number').setup(opts)
+    end,
+    opts = {}
   },
 
   -- UI

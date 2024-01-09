@@ -25,6 +25,9 @@ M.general = {
     ["<C-e>"] = { ':tabnext <CR>' },
     ["<C-q>"] = { ':tabprev <CR>' },
 
+    ["trq"] = { ':tabmove -1<CR>' },
+    ["tre"] = { ':tabmove +1<CR>' },
+
     ["gh"] = { ":let @/='\\<'.expand('<cword>').'\\>' <bar> set hls <CR>" },
   }
 }
