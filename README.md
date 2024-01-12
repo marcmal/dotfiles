@@ -23,15 +23,3 @@ make bash
 ```
 make tmux
 ```
-
-### [Neovim configuration](nvim)
-
-#### Requirements
-- [Neovim](https://github.com/neovim/neovim) - Please refer to [Neovim repository wiki](https://github.com/neovim/neovim/wiki/Installing-Neovim) for installation guide.
-
-- [ripgrep](https://github.com/BurntSushi/ripgrep) - Required for grepping files inside Neovim (can be replaced by other grep tools)
-
-#### Install
-```
-make nvim
-```
