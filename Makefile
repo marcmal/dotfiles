@@ -1,4 +1,4 @@
-.PHONY: help bash tmux nvim starship wezterm
+.PHONY: help update bash tmux nvim starship wezterm
 
 help:
 	@echo 'Configurations:'
@@ -11,6 +11,12 @@ help:
 	@echo 'make all - configure all'
 	@echo ''
 	@echo '[WARNING] Running above will override your current configuration.'
+	@echo ''
+	@echo 'make update - update submodules to master version'
+	@echo ''
+
+update:
+	git submodule update --remote --merge
 
 bash:
 	@ln -fs $(PWD)/bash/.bashrc ~/.bashrc
