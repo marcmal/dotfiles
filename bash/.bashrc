@@ -12,8 +12,10 @@ alias 'll'='eza -al --color=always --icons=always'
 export EDITOR=nvim
 export BAT_THEME='gruvbox-dark'
 
-[ -f ~/.bash_libs/work.sh ] && source ~/.bash_libs/work.sh
-[ -f ~/.bash_libs/utils.sh ] && source ~/.bash_libs/utils.sh
+[ -f ~/.bash/work.sh ] && source ~/.bash/work.sh
+[ -f ~/.bash/utils.sh ] && source ~/.bash/utils.sh
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 eval "$(starship init bash)"
+eval "$(zoxide init bash)"
+eval "$(fzf --bash)"

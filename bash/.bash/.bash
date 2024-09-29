@@ -1,0 +1,1 @@
+/home/marcin/dotfiles/bash/.bash
