@@ -17,6 +17,7 @@ config.window_padding            = {
   bottom = 6,
 }
 config.window_decorations        = "RESIZE"
+config.selection_word_boundary   = '{}[]()"\'`.,;:- <>'
 
 config.window_frame              = {
   -- The font used in the tab bar.
