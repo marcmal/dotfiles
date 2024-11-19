@@ -1,4 +1,0 @@
-[submodule "nvim"]
-	path = nvim
-	url = https://github.com/marmal95/neovim-conf.git
-  branch = master
