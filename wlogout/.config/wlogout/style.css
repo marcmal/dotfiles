@@ -1,0 +1,65 @@
+@import "everforest.css";
+
+window {
+  color: @fg;
+  background-image: url('../wallpapers/arch.jpg');
+  background-position: center;
+  font-family: 'Hack Nerd Font';
+  font-size: 4rem;
+}
+
+button {
+  /* margin: 5px; */
+  color: @fg;
+  background-color: @bg1;
+  background-size: 10%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  border-radius: 0px;
+  box-shadow: none;
+  text-shadow: none;
+  opacity: 0.9;
+}
+
+button:focus, button:active, button:hover {
+  color: @bg0;
+  background-color: #A7C080;
+  text-shadow: none;
+}
+
+#lock {
+  background-image: image(url("./icons/lock.png"));
+  border-radius: 64px 0px 0px 0px;
+}
+
+#lock:hover, #lock:focus {
+  background-image: image(url("./icons/lock-hover.png"));
+}
+
+#logout {
+  background-image: image(url("./icons/logout.png"));
+  border-radius: 0px 0px 0px 64px;
+}
+
+#logout:hover, #logout:focus {
+  background-image: image(url("./icons/logout-hover.png"));
+}
+
+#shutdown {
+  background-image: image(url("./icons/shutdown.png"));
+  border-radius: 0px 64px 0px 0px;
+}
+
+#shutdown:hover, #shutdown:focus {
+  background-image: image(url("./icons/shutdown-hover.png"));
+}
+
+#reboot {
+  background-image: image(url("./icons/reboot.png"));
+  border-radius: 0px 0px 64px 0px;
+}
+
+#reboot:hover, #reboot:focus {
+  background-image: image(url("./icons/reboot-hover.png"));
+}
