@@ -2,11 +2,12 @@ local wezterm                    = require('wezterm')
 local theme                      = require('everforest')
 
 local config                     = wezterm.config_builder()
-config.default_prog              = { 'powershell' }
+config.default_prog              = { 'bash' }
 
 config.color_scheme              = 'Everforest Dark (Gogh)'
 config.font                      = wezterm.font('Hack Nerd Font')
 config.use_fancy_tab_bar         = true
+config.enable_wayland            = false
 config.font_size                 = 16.0
 config.window_background_opacity = 0.98
 config.audible_bell              = 'Disabled'
