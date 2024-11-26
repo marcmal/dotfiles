@@ -1,0 +1,36 @@
+{
+  "layer": "top",
+  "position": "top",
+  "include": ["$HOME/.config/waybar/modules.jsonc"],
+  "modules-left": [
+    "custom/apps",
+    "hyprland/workspaces",
+    "group/hardware"
+  ],
+  "modules-center": [
+    "mpris"
+  ],
+  "modules-right": [
+    "tray",
+    "group/system",
+    "clock",
+    "custom/swaync",
+    "custom/power"
+  ],
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": [
+      "disk",
+      "cpu",
+      "memory" 
+    ]
+  },
+  "group/system": {
+    "orientation": "horizontal",
+    "modules": [
+      "pulseaudio",
+      "battery",
+      "network"
+    ]
+  }
+}

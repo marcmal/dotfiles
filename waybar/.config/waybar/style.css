@@ -1,0 +1,149 @@
+@import "./everforest.css";
+
+/* ================ */
+/* ==== Global ==== */
+/* ================ */
+* {
+  border: none;
+  font-family: Hack Nerd Font;
+  font-size: 16px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: @bg0;
+  color: @text;
+}
+
+tooltip {
+  background: @bg0;
+  border-color: @green;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.module
+{
+  background: @bg1;
+  border-radius: 8px;
+  border: 1px solid @bg1;
+  font-weight: 600;
+  margin: 6px 0 6px 0;
+  padding: 0.5rem 1rem;
+}
+
+.module:hover {
+  background-color: @bg2;
+}
+
+/* ================ */
+/* ===== Left ===== */
+/* ================ */
+#custom-apps {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+#workspaces {
+  font-weight: Bold;
+  margin-right: 1rem;
+  padding: 0;
+}
+
+#workspaces button {
+  color: @bg5;
+}
+
+#workspaces button.active {
+  background-color: @green;
+  color: @bg0;
+}
+
+#workspaces button:hover {
+  background: @bg_visual;
+  color: @fg;
+  box-shadow: inherit;
+  text-shadow: inherit;
+}
+
+#disk,
+#cpu,
+#memory,
+#window
+{
+  color: @orange;
+}
+
+#disk {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#cpu {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+#memory {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* ================ */
+/* ==== Center ==== */
+/* ================ */
+#mpris {
+  color: @purple;
+}
+
+/* ================ */
+/* ==== Right ===== */
+/* ================ */
+#tray {
+  margin-right: 1rem;
+  /* padding-left: 10px; */
+  /* padding-right: 10px; */
+}
+
+#pulseaudio,
+#battery {
+  color: @green;
+}
+
+#pulseaudio {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#battery {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#network {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-right: 1rem;
+  color: @yellow;
+}
+
+#clock {
+  color: @orange;
+  /* font-weight: 600; */
+  margin-right: 1rem;
+}
+
+#custom-swaync {
+  color: @red;
+  margin-right: 1rem;
+}
+
+#custom-power {
+  color: @red;
+  margin-right: 1rem;
+}
