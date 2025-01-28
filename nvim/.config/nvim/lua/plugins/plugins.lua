@@ -122,31 +122,15 @@ local plugins = {
   },
 
   {
-    'hrsh7th/nvim-cmp',
+    'saghen/blink.cmp',
+    version = '*',
     event = { 'InsertEnter' },
     opts = function()
-      return require "plugins.configs.cmp"
+      return require "plugins.configs.blink-cmp"
     end,
     config = function(_, opts)
-      require('cmp').setup(opts)
+      require('blink.cmp').setup(opts)
     end,
-    dependencies = {
-      {
-        "L3MON4D3/LuaSnip",
-        dependencies = "rafamadriz/friendly-snippets",
-        config = function()
-          require("luasnip.loaders.from_vscode").lazy_load()
-        end
-      },
-
-      {
-        "saadparwaiz1/cmp_luasnip",
-        "hrsh7th/cmp-nvim-lua",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-      },
-    }
   },
 
   {
