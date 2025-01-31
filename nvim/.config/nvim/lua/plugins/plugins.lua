@@ -6,9 +6,6 @@ local plugins = {
     opts = function()
       return require('plugins.configs.which-key')
     end,
-    config = function(_, opts)
-      require("which-key").setup(opts)
-    end,
     keys = {
       {
         "<leader>?",
@@ -30,9 +27,6 @@ local plugins = {
     opts = function()
       return require "plugins.configs.fzf"
     end,
-    config = function(_, opts)
-      require("fzf-lua").setup(opts)
-    end
   },
 
   {
@@ -44,15 +38,12 @@ local plugins = {
     init = function()
       require('core.utils').load_mappings('nvim_tree')
     end,
-    config = function(_, opts)
-      require('nvim-tree').setup(opts)
-    end,
   },
 
   {
     'windwp/nvim-autopairs',
     event = { 'BufRead', 'BufNewFile' },
-    config = function() require("nvim-autopairs").setup {} end
+    config = true
   },
 
   {
@@ -61,7 +52,7 @@ local plugins = {
     init = function()
       require('core.utils').load_mappings('hop')
     end,
-    config = function() require('hop').setup {} end
+    config = true
   },
 
   {
@@ -72,9 +63,6 @@ local plugins = {
     end,
     opts = function()
       return require "plugins.configs.gitsigns"
-    end,
-    config = function(_, opts)
-      require('gitsigns').setup(opts)
     end,
   },
 
@@ -89,7 +77,7 @@ local plugins = {
       { "gb",  mode = { "n", "o" }, desc = "Comment toggle blockwise" },
       { "gb",  mode = "x",          desc = "Comment toggle blockwise (visual)" },
     },
-    config = function() require('Comment').setup {} end
+    config = true
   },
 
   {
@@ -101,7 +89,6 @@ local plugins = {
   -- Language Support
   {
     "williamboman/mason.nvim",
-    lazy = false,
     cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
     opts = function()
       return require "plugins.configs.mason"
@@ -128,9 +115,6 @@ local plugins = {
     opts = function()
       return require "plugins.configs.blink-cmp"
     end,
-    config = function(_, opts)
-      require('blink.cmp').setup(opts)
-    end,
   },
 
   {
@@ -140,9 +124,6 @@ local plugins = {
     build = ":TSUpdate",
     opts = function()
       return require('plugins.configs.tree-sitter')
-    end,
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
     end,
   },
 
@@ -156,25 +137,21 @@ local plugins = {
   {
     'marmal95/nvim-cursor-number',
     cmd = { 'ConvertCursorNumber' },
-    config = function(_, opts)
-      require('cursor_number').setup(opts)
-    end,
-    opts = {}
+    config = true
   },
 
   -- UI
   {
     'neanias/everforest-nvim',
+    main = 'everforest',
     lazy = false,
-    config = function()
-      require("everforest").setup({
-        background = "medium",
-        italics = true,
-        -- Hack: Set to unsupported value (-1)
-        -- Prevents setting Transparency and colors change by theme on its own
-        transparent_background_level = -1
-      })
-    end,
+    opts = {
+      background = "medium",
+      italics = true,
+      -- Hack: Set to unsupported value (-1)
+      -- Prevents setting Transparency and colors change by theme on its own
+      transparent_background_level = -1
+    },
   },
 
   {
@@ -189,17 +166,23 @@ local plugins = {
     opts = function()
       return require('plugins.configs.lualine')
     end,
-    config = function(_, opts)
-      require('lualine').setup(opts)
-    end,
   },
 
   {
     'goolord/alpha-nvim',
     event = "VimEnter",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function() require 'alpha'.setup(require 'alpha.themes.startify'.config) end
+    opts = function() return require 'alpha.themes.startify'.config end
   },
+
+  {
+    'akinsho/toggleterm.nvim',
+    cmd = { 'ToggleTerm' },
+    keys = {
+      { "<c-\\>", mode = "n", desc = "Toggle floating terminal" },
+    },
+    opts = function() return require('plugins.configs.toggleterm') end
+  }
 }
 
 return plugins
