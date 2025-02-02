@@ -1,29 +1,18 @@
 local plugins = {
-  -- Navigation
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = function()
       return require('plugins.configs.which-key')
     end,
-    keys = {
-      {
-        "<leader>?",
-        function()
-          require("which-key").show({ global = false })
-        end,
-        desc = "Buffer Local Keymaps (which-key)",
-      },
-    },
+    keys = require('core.mapping').which_key,
   },
 
   {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     cmd = "FzfLua",
-    init = function()
-      require('core.utils').load_mappings('fzf')
-    end,
+    keys = require('core.mapping').fzf,
     opts = function()
       return require "plugins.configs.fzf"
     end,
@@ -35,9 +24,7 @@ local plugins = {
     opts = function()
       return require "plugins.configs.nvim-tree"
     end,
-    init = function()
-      require('core.utils').load_mappings('nvim_tree')
-    end,
+    keys = require('core.mapping').nvim_tree
   },
 
   {
@@ -47,36 +34,24 @@ local plugins = {
   },
 
   {
-    'phaazon/hop.nvim',
-    cmd = { "HopWord", "HopPattern", "HopLineStart" },
-    init = function()
-      require('core.utils').load_mappings('hop')
-    end,
-    config = true
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = require('core.mapping').flash
   },
 
   {
     "lewis6991/gitsigns.nvim",
     event = { 'BufRead', 'BufNewFile' },
-    init = function()
-      require('core.utils').load_mappings('gitsigns')
-    end,
     opts = function()
       return require "plugins.configs.gitsigns"
     end,
+    keys = require('core.mapping').gitsigns
   },
 
   {
     'numToStr/Comment.nvim',
-    -- Keys triggering plugin lazy loading. Actual mapping done by defaults in `setup {}`
-    keys = {
-      { "gcc", mode = "n",          desc = "Comment toggle current line" },
-      { "gc",  mode = { "n", "o" }, desc = "Comment toggle linewise" },
-      { "gc",  mode = "x",          desc = "Comment toggle linewise (visual)" },
-      { "gbc", mode = "n",          desc = "Comment toggle current block" },
-      { "gb",  mode = { "n", "o" }, desc = "Comment toggle blockwise" },
-      { "gb",  mode = "x",          desc = "Comment toggle blockwise (visual)" },
-    },
+    keys = require('core.mapping').comment,
     config = true
   },
 
@@ -86,10 +61,10 @@ local plugins = {
     config = true,
   },
 
-  -- Language Support
   {
     "williamboman/mason.nvim",
-    cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
+    lazy = false,
+    event = { 'BufRead', 'BufNewFile' },
     opts = function()
       return require "plugins.configs.mason"
     end,
@@ -127,7 +102,6 @@ local plugins = {
     end,
   },
 
-  -- Utils
   { "nvim-lua/plenary.nvim" },
   {
     'powerman/vim-plugin-AnsiEsc',
@@ -140,7 +114,6 @@ local plugins = {
     config = true
   },
 
-  -- UI
   {
     'neanias/everforest-nvim',
     main = 'everforest',
@@ -178,9 +151,7 @@ local plugins = {
   {
     'akinsho/toggleterm.nvim',
     cmd = { 'ToggleTerm' },
-    keys = {
-      { "<c-\\>", mode = "n", desc = "Toggle floating terminal" },
-    },
+    keys = require('core.mapping').terminal,
     opts = function() return require('plugins.configs.toggleterm') end
   }
 }

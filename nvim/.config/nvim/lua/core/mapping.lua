@@ -45,95 +45,121 @@ M.general = {
 }
 
 M.fzf = {
-  n = {
-    ["<leader>ff"] = { "<cmd> FzfLua files <CR>", { desc = "Find files" } },
-    ["<leader>fr"] = { "<cmd> FzfLua resume <CR>", { desc = "Resume find/grep" } },
-    ["<leader>fb"] = { "<cmd> FzfLua buffers <CR>", { desc = "Browse buffers" } },
-    ["<leader>fg"] = { "<cmd> FzfLua live_grep_glob <CR>", { desc = "Grep files" } },
-    ["<leader>fs"] = { "<cmd> FzfLua grep_cword <CR>", { desc = "Grep cursor word" } },
-    ["<leader>fcg"] = { function()
+  { "<leader>ff", function() require('fzf-lua').files() end,          desc = "Find Files" },
+  { "<leader>fr", function() require('fzf-lua').resume() end,         desc = "Resume find/grep" },
+  { "<leader>fb", function() require('fzf-lua').buffers() end,        desc = "Browse buffers" },
+  { "<leader>fg", function() require('fzf-lua').live_grep_glob() end, desc = "Grep files" },
+  { "<leader>fs", function() require('fzf-lua').grep_cword() end,     desc = "Grep cursor word" },
+  {
+    "<leader>fcg",
+    function()
+      require('fzf-lua')
       local default_rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096"
       local ignore_pattern = "'!test'"
       local rg_opts = default_rg_opts .. ' -g ' .. ignore_pattern .. ' -e '
       require('fzf-lua').live_grep({ rg_opts = rg_opts })
-    end, { desc = "Grep files excluding tests" } },
+    end,
+    desc = "Grep files excluding tests"
   },
-  v = {
-    ["<leader>fg"] = { "<cmd> FzfLua grep_visual <CR>", { desc = "Grep selection" } },
-  }
+  { "<leader>fg", mode = 'v', function() require('fzf-lua').grep_visual() end, desc = "Grep selection" },
+}
+
+M.comment = {
+  { "gcc", mode = "n",          desc = "Comment toggle current line" },
+  { "gc",  mode = { "n", "o" }, desc = "Comment toggle linewise" },
+  { "gc",  mode = "x",          desc = "Comment toggle linewise (visual)" },
+  { "gbc", mode = "n",          desc = "Comment toggle current block" },
+  { "gb",  mode = { "n", "o" }, desc = "Comment toggle blockwise" },
+  { "gb",  mode = "x",          desc = "Comment toggle blockwise (visual)" },
+}
+
+M.terminal = {
+  { "<c-\\>", mode = "n", desc = "Toggle floating terminal" },
+}
+
+M.which_key = {
+  {
+    "<leader>?",
+    function()
+      require("which-key").show({ global = false })
+    end,
+    desc = "Buffer Local Keymaps (which-key)",
+  },
 }
 
 M.nvim_tree = {
-  n = {
-    ["<leader>tt"] = { ":NvimTreeToggle <CR>", { desc = "Toggle file explorer tree" } },
-    ["<leader>tf"] = { ":NvimTreeFindFile<CR>", { desc = "Find current file in file explorer tree" } },
-  }
+  { "<leader>tt", ":NvimTreeToggle <CR>",   desc = "Toggle file explorer tree" },
+  { "<leader>tf", ":NvimTreeFindFile <CR>", desc = "Find current file in file explorer tree" },
 }
 
 M.gitsigns = {
-  n = {
-    ["]c"] = {
-      function()
-        if vim.wo.diff then
-          return "]c"
-        end
-        vim.schedule(function()
-          require("gitsigns").next_hunk()
-        end)
-        return "<Ignore>"
-      end,
-      { desc = "Jump to next hunk" },
-    },
+  {
+    "]c",
+    function()
+      if vim.wo.diff then
+        return "]c"
+      end
+      vim.schedule(function()
+        require("gitsigns").next_hunk()
+      end)
+      return "<Ignore>"
+    end,
+    desc = "Jump to next hunk"
+  },
 
-    ["[c"] = {
-      function()
-        if vim.wo.diff then
-          return "[c"
-        end
-        vim.schedule(function()
-          require("gitsigns").prev_hunk()
-        end)
-        return "<Ignore>"
-      end,
-      { desc = "Jump to prev hunk" },
-    },
+  {
+    "[c]",
+    function()
+      if vim.wo.diff then
+        return "[c"
+      end
+      vim.schedule(function()
+        require("gitsigns").prev_hunk()
+      end)
+      return "<Ignore>"
+    end,
+    desc = "Jump to prev hunk"
+  },
 
-    ["<leader>hr"] = {
-      function()
-        require("gitsigns").reset_hunk()
-      end,
-      { desc = "Reset hunk" },
-    },
+  {
+    "<leader>hr",
+    function()
+      require("gitsigns").reset_hunk()
+    end,
+    desc = "Reset hunk"
+  },
 
-    ["<leader>hp"] = {
-      function()
-        require("gitsigns").preview_hunk()
-      end,
-      { desc = "Preview hunk" },
-    },
+  {
+    "<leader>hp",
+    function()
+      require("gitsigns").preview_hunk()
+    end,
+    desc = "Reset hunk"
+  },
 
-    ["<leader>hb"] = {
-      function()
-        package.loaded.gitsigns.blame_line { full = true }
-      end,
-      { desc = "Blame line" },
-    },
+  {
+    "<leader>hb",
+    function()
+      require("gitsigns").blame_line { full = true }
+    end,
+    desc = "Blame line"
+  },
 
-    ["<leader>td"] = {
-      function()
-        require("gitsigns").toggle_deleted()
-      end,
-      { desc = "Toggle deleted" },
-    },
+  {
+    "<leader>td",
+    function()
+      require("gitsigns").toggle_deleted()
+    end,
+    desc = "Toggle deleted"
   },
 }
 
-M.hop = {
-  n = {
-    ["<leader>jw"] = { "<cmd> HopWord <CR>", { desc = "Jump to word" } },
-    ["<leader>jp"] = { "<cmd> HopPattern <CR>", { desc = "Jump to pattern" } },
-    ["<leader>jl"] = { "<cmd> HopLineStart <CR>", { desc = "Jump to line" } },
-  }
+M.flash = {
+  { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+  { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+  { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+  { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+  { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
 }
 
 M.lspconfig = {
