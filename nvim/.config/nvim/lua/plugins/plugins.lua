@@ -100,6 +100,9 @@ local plugins = {
     opts = function()
       return require('plugins.configs.tree-sitter')
     end,
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
   },
 
   { "nvim-lua/plenary.nvim" },

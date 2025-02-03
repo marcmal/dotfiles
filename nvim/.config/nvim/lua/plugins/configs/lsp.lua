@@ -16,7 +16,7 @@ M.servers = {
 
 M.capabilities = require('blink.cmp').get_lsp_capabilities()
 M.on_attach = function(_, bufnr)
-  require('core.utils').load_mappings('lspconfig', { buffer = bufnr })
+  require('core.mapping').load('lspconfig', { buffer = bufnr })
 end
 
 function M:configure()
