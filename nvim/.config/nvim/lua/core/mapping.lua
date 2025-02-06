@@ -69,7 +69,8 @@ M.comment = {
 }
 
 M.terminal = {
-  { "<c-\\>", mode = "n", desc = "Toggle floating terminal" },
+  { [[<C-\>]], mode = "n",     desc = "Toggle floating terminal" },
+  { "<esc>",   [[<C-\><C-n>]], mode = "t",                       desc = "Switch to normal mode" },
 }
 
 M.which_key = {
