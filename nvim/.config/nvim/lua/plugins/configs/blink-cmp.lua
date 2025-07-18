@@ -22,7 +22,6 @@ local config = {
 
   sources = {
     default = { 'lsp', 'path', 'snippets', 'buffer' },
-    cmdline = {},
   },
 }
 
