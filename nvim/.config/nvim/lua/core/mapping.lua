@@ -10,40 +10,42 @@ M.load = function(plugin, group_opts)
 end
 
 M.general = {
-  { "<bar>",     mode = 'n', ":vsplit<CR>" },
-  { "_",         mode = 'n', ":split<CR>" },
-  { "<ESC>",     mode = 'n', ":noh<CR>" },
-  { "n",         mode = 'n', "nzzzv" },
-  { "N",         mode = 'n', "Nzzzv" },
-  { "J",         mode = 'n', "mzJ`z" },
-  { "<C-d>",     mode = 'n', "<C-d>zz" },
-  { "<C-u>",     mode = 'n', "<C-u>zz" },
-  { "<C-k>",     mode = 'n', ":wincmd k<CR>" },
-  { "<C-l>",     mode = 'n', ":wincmd l<CR>" },
-  { "<C-h>",     mode = 'n', ":wincmd h<CR>" },
-  { "<C-j>",     mode = 'n', ":wincmd j<CR>" },
-  { "<C-Right>", mode = 'n', ":vertical resize +2<CR>" },
-  { "<C-Left>",  mode = 'n', ":vertical resize -2<CR>" },
-  { "<C-Up>",    mode = 'n', ":horizontal resize +2<CR>" },
-  { "<C-Down>",  mode = 'n', ":horizontal resize -2<CR>" },
+  { "<bar>",     mode = 'n',                                                 ":vsplit<CR>" },
+  { "_",         mode = 'n',                                                 ":split<CR>" },
+  { "<ESC>",     mode = 'n',                                                 ":noh<CR>" },
+  { "n",         mode = 'n',                                                 "nzzzv" },
+  { "N",         mode = 'n',                                                 "Nzzzv" },
+  { "J",         mode = 'n',                                                 "mzJ`z" },
+  { "<C-d>",     mode = 'n',                                                 "<C-d>zz" },
+  { "<C-u>",     mode = 'n',                                                 "<C-u>zz" },
+  { "<C-k>",     mode = 'n',                                                 ":wincmd k<CR>" },
+  { "<C-l>",     mode = 'n',                                                 ":wincmd l<CR>" },
+  { "<C-h>",     mode = 'n',                                                 ":wincmd h<CR>" },
+  { "<C-j>",     mode = 'n',                                                 ":wincmd j<CR>" },
+  { "<C-Right>", mode = 'n',                                                 ":vertical resize +2<CR>" },
+  { "<C-Left>",  mode = 'n',                                                 ":vertical resize -2<CR>" },
+  { "<C-Up>",    mode = 'n',                                                 ":horizontal resize +2<CR>" },
+  { "<C-Down>",  mode = 'n',                                                 ":horizontal resize -2<CR>" },
 
-  { "<C-e>",     mode = 'n', ":tabnext <CR>" },
-  { "<C-q>",     mode = 'n', ":tabprev <CR>" },
+  { "<C-e>",     mode = 'n',                                                 ":tabnext <CR>" },
+  { "<C-q>",     mode = 'n',                                                 ":tabprev <CR>" },
 
-  { "trq",       mode = 'n', ":tabmove -1<CR>" },
-  { "tre",       mode = 'n', ":tabmove +1<CR>" },
+  { "trq",       mode = 'n',                                                 ":tabmove -1<CR>" },
+  { "tre",       mode = 'n',                                                 ":tabmove +1<CR>" },
 
-  { "gh",        mode = 'n', ":let @/='\\<'.expand('<cword>').'\\>' <bar> set hls <CR>" },
+  { "gh",        mode = 'n',                                                 ":let @/='\\<'.expand('<cword>').'\\>' <bar> set hls <CR>" },
 
-  { "J",         mode = 'v', ":m '>+1<CR>gv=gv" },
-  { "K",         mode = 'v', ":m '<-2<CR>gv=gv" },
+  { "J",         mode = 'v',                                                 ":m '>+1<CR>gv=gv" },
+  { "K",         mode = 'v',                                                 ":m '<-2<CR>gv=gv" },
+
+  { "mm",        function() require('core.work').switch_header_source() end, desc = "Switch header/source" },
 }
 
 M.fzf = {
   { "<leader>ff", function() require('fzf-lua').files() end,          desc = "Find Files" },
   { "<leader>fr", function() require('fzf-lua').resume() end,         desc = "Resume find/grep" },
   { "<leader>fb", function() require('fzf-lua').buffers() end,        desc = "Browse buffers" },
-  { "<leader>fg", function() require('fzf-lua').live_grep_glob() end, desc = "Grep files" },
+  { "<leader>fg", function() require('fzf-lua').live_grep() end, desc = "Grep files" },
   { "<leader>fs", function() require('fzf-lua').grep_cword() end,     desc = "Grep cursor word" },
   {
     "<leader>fcg",
