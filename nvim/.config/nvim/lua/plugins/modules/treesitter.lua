@@ -1,7 +1,8 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   event = "VeryLazy",
-  cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+  main = 'nvim-treesitter.configs',
+  -- cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
   build = ":TSUpdate",
   opts = {
     -- One of "all", "maintained" (parsers with maintainers), or a list of languages
