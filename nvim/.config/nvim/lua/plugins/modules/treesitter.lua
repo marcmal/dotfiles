@@ -1,12 +1,18 @@
+local languages = { 'cpp', 'lua' }
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = languages,
+  callback = function() vim.treesitter.start() end,
+})
+
 return {
   "nvim-treesitter/nvim-treesitter",
   event = "VeryLazy",
-  main = 'nvim-treesitter.configs',
-  -- cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+  branch = 'main',
   build = ":TSUpdate",
   opts = {
     -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-    ensure_installed = { "cpp", "lua", "vim" },
+    ensure_installed = languages,
 
     highlight = {
       enable = true,
