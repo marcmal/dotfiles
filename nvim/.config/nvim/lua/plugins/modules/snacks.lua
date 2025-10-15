@@ -70,16 +70,10 @@ return {
     { "<leader>sS",      function() Snacks.picker.lsp_workspace_symbols() end,                   desc = "LSP Workspace Symbols" },
     -- Terminal
     {
-      "<C-\\>",
-      function() Snacks.terminal.toggle() end,
-      mode = { "n" }, -- normal mode
+      "<leader>t",
+      function() Snacks.terminal() end,
+      mode = { 'n', 't' },
       desc = "Toggle Terminal",
-    },
-    {
-      "<C-\\>",
-      function() Snacks.terminal.toggle() end,
-      mode = { "t" }, -- terminal mode
-      desc = "Toggle Terminal (terminal mode)",
     },
   }
 }

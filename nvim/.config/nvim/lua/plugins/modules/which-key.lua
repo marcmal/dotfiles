@@ -7,5 +7,13 @@ return {
       delay = 1000
     }
   end,
-  keys = require('core.mapping').which_key,
+  keys = {
+    {
+      "<leader>?",
+      function()
+        require("which-key").show({ global = false })
+      end,
+      desc = "Buffer Local Keymaps (which-key)",
+    }
+  },
 }
