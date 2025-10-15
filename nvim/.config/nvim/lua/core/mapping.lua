@@ -42,11 +42,11 @@ M.general = {
 }
 
 M.fzf = {
-  { "<leader>ff", function() require('fzf-lua').files() end,          desc = "Find Files" },
-  { "<leader>fr", function() require('fzf-lua').resume() end,         desc = "Resume find/grep" },
-  { "<leader>fb", function() require('fzf-lua').buffers() end,        desc = "Browse buffers" },
-  { "<leader>fg", function() require('fzf-lua').live_grep() end, desc = "Grep files" },
-  { "<leader>fs", function() require('fzf-lua').grep_cword() end,     desc = "Grep cursor word" },
+  { "<leader>ff", function() require('fzf-lua').files() end,      desc = "Find Files" },
+  { "<leader>fr", function() require('fzf-lua').resume() end,     desc = "Resume find/grep" },
+  { "<leader>fb", function() require('fzf-lua').buffers() end,    desc = "Browse buffers" },
+  { "<leader>fg", function() require('fzf-lua').live_grep() end,  desc = "Grep files" },
+  { "<leader>fs", function() require('fzf-lua').grep_cword() end, desc = "Grep cursor word" },
   {
     "<leader>fcg",
     function()
@@ -59,6 +59,11 @@ M.fzf = {
     desc = "Grep files excluding tests"
   },
   { "<leader>fg", mode = 'v', function() require('fzf-lua').grep_visual() end, desc = "Grep selection" },
+}
+
+M.fzf_internal = {
+  ["<M-m>"] = "toggle-fullscreen",
+  ["<M-p>"] = "toggle-preview"
 }
 
 M.comment = {
@@ -83,11 +88,6 @@ M.which_key = {
     end,
     desc = "Buffer Local Keymaps (which-key)",
   },
-}
-
-M.nvim_tree = {
-  { "<leader>tt", ":NvimTreeToggle <CR>",   desc = "Toggle file explorer tree" },
-  { "<leader>tf", ":NvimTreeFindFile <CR>", desc = "Find current file in file explorer tree" },
 }
 
 M.gitsigns = {
@@ -161,54 +161,54 @@ M.flash = {
 }
 
 M.lspconfig = {
-  {
-    "gD",
-    mode = "n",
-    function()
-      vim.lsp.buf.declaration()
-    end,
-    desc = "LSP declaration"
-  },
-  {
-    "gd",
-    mode = "n",
-    function()
-      vim.lsp.buf.definition()
-    end,
-    desc = "LSP definition"
-  },
-  {
-    "K",
-    mode = "n",
-    function()
-      vim.lsp.buf.hover()
-    end,
-    desc = "LSP hover"
-  },
-  {
-    "gi",
-    mode = "n",
-    function()
-      vim.lsp.buf.implementation()
-    end,
-    desc = "LSP implementation"
-  },
-  {
-    "gtd",
-    mode = "n",
-    function()
-      vim.lsp.buf.type_definition()
-    end,
-    desc = "LSP type definition"
-  },
-  {
-    "gr",
-    mode = "n",
-    function()
-      vim.lsp.buf.references()
-    end,
-    desc = "LSP references"
-  },
+  -- {
+  --   "gD",
+  --   mode = "n",
+  --   function()
+  --     vim.lsp.buf.declaration()
+  --   end,
+  --   desc = "LSP declaration"
+  -- },
+  -- {
+  --   "gd",
+  --   mode = "n",
+  --   function()
+  --     vim.lsp.buf.definition()
+  --   end,
+  --   desc = "LSP definition"
+  -- },
+  -- {
+  --   "K",
+  --   mode = "n",
+  --   function()
+  --     vim.lsp.buf.hover()
+  --   end,
+  --   desc = "LSP hover"
+  -- },
+  -- {
+  --   "gi",
+  --   mode = "n",
+  --   function()
+  --     vim.lsp.buf.implementation()
+  --   end,
+  --   desc = "LSP implementation"
+  -- },
+  -- {
+  --   "gtd",
+  --   mode = "n",
+  --   function()
+  --     vim.lsp.buf.type_definition()
+  --   end,
+  --   desc = "LSP type definition"
+  -- },
+  -- {
+  --   "gr",
+  --   mode = "n",
+  --   function()
+  --     vim.lsp.buf.references()
+  --   end,
+  --   desc = "LSP references"
+  -- },
   {
     "<space>e",
     mode = "n",

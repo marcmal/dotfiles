@@ -1,10 +1,11 @@
-return {
-  "lewis6991/gitsigns.nvim",
-  event = 'VeryLazy',
-  opts = {
-    signcolumn      = true,
-    numhl           = true,
-    max_file_length = 100000
-  },
-  keys = require('core.mapping').gitsigns
-}
+-- return {
+--   "lewis6991/gitsigns.nvim",
+--   event = 'VeryLazy',
+--   opts = {
+--     signcolumn      = true,
+--     numhl           = true,
+--     max_file_length = 100000
+--   },
+--   keys = require('core.mapping').gitsigns
+-- }
+return {}

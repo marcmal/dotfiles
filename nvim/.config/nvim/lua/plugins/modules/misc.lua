@@ -4,10 +4,4 @@ return {
     'powerman/vim-plugin-AnsiEsc',
     cmd = 'AnsiEsc'
   },
-
-  {
-    'marmal95/nvim-cursor-number',
-    cmd = { 'ConvertCursorNumber' },
-    config = true
-  },
 }

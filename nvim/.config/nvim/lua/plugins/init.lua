@@ -4,6 +4,9 @@ function M.configure()
   M.bootstrap_manager()
   require("lazy").setup({
     spec = { import = 'plugins.modules' },
+    change_detection = {
+      enabled = false,
+    },
     performance = {
       rtp = {
         disabled_plugins = {
