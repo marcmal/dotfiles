@@ -37,7 +37,7 @@ return {
     })
 
     local servers = {
-      clangd = { cmd = { "clangd", "--query-driver=/proj/rbsNodeIfStorage/nodeif/**/x86_64-wrs-linux-g*" } },
+      clangd = {},
       rust_analyzer = {},
       lua_ls = {
         settings = {
@@ -52,7 +52,18 @@ return {
 
     local capabilities = require('blink.cmp').get_lsp_capabilities()
     local on_attach = function(_, bufnr)
-      require('core.mapping').load('lspconfig', { buffer = bufnr })
+      local map = vim.keymap.set
+      local function opts(desc)
+        return { buffer = bufnr, desc = "LSP " .. desc }
+      end
+
+      map("n", "<space>e", function() vim.diagnostic.open_float({ border = "rounded" }) end, opts "LSP Diagnostic")
+      map("n", "<space>ca", vim.lsp.buf.code_action, opts "Code Action")
+      map("n", "<space>cf", vim.lsp.buf.format, opts "Code Format")
+      map("n", "<space>h", vim.lsp.buf.signature_help, opts "Signature Help")
+      map("n", "[d", function() vim.diagnostic.goto_prev { float = { border = "rounded" } } end,
+        opts "Previous Diagnostic")
+      map("n", "]d", function() vim.diagnostic.goto_next { float = { border = "rounded" } } end, opts "Next Diagnostic")
     end
 
     for name, opts in pairs(servers) do
