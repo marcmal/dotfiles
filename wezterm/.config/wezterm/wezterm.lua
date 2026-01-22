@@ -1,14 +1,14 @@
 local wezterm                    = require('wezterm')
-local theme                      = require('everforest')
+local theme                      = require('catppuccin')
 
 local config                     = wezterm.config_builder()
 config.default_prog              = { 'bash' }
 
-config.color_scheme              = 'Everforest Dark (Gogh)'
+config.color_scheme              = 'catppuccin-macchiato'
 config.font                      = wezterm.font('Hack Nerd Font')
 config.use_fancy_tab_bar         = true
 config.enable_wayland            = false
-config.font_size                 = 16.0
+config.font_size                 = 18.0
 config.window_background_opacity = 0.98
 config.audible_bell              = 'Disabled'
 config.window_padding            = {
@@ -35,41 +35,41 @@ config.window_frame              = {
 
   -- The overall background color of the tab bar when
   -- the window is focused
-  active_titlebar_bg = theme.bg0,
+  active_titlebar_bg = theme.active_titlebar_bg,
 
   -- The overall background color of the tab bar when
   -- the window is not focused
-  inactive_titlebar_bg = theme.bg0,
+  inactive_titlebar_bg = theme.inactive_titlebar_bg,
 }
 
 config.colors                    = {
   tab_bar = {
     -- The active tab is the one that has focus in the window
     active_tab = {
-      bg_color = theme.green,
-      fg_color = theme.bg0,
+      bg_color = theme.active_tab_bg,
+      fg_color = theme.active_tab_fg,
     },
 
     -- Inactive tabs are the tabs that do not have focus
     inactive_tab = {
-      bg_color = theme.bg1,
-      fg_color = theme.grey2,
+      bg_color = theme.inactive_tab_bg,
+      fg_color = theme.inactive_tab_fg,
     },
 
     inactive_tab_hover = {
-      bg_color = theme.bg2,
-      fg_color = theme.grey2,
+      bg_color = theme.inactive_tab_bg,
+      fg_color = theme.inactive_tab_fg,
     },
 
     -- The new tab button that let you create new tabs
     new_tab = {
-      bg_color = theme.bg1,
-      fg_color = theme.grey2,
+      bg_color = theme.new_tab_bg,
+      fg_color = theme.new_tab_fg,
     },
 
     new_tab_hover = {
-      bg_color = theme.green,
-      fg_color = theme.bg0,
+      bg_color = theme.new_tab_hover_bg,
+      fg_color = theme.new_tab_hover_fg,
     },
   }
 }
