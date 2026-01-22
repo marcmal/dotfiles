@@ -37,7 +37,7 @@ return {
     })
 
     local servers = {
-      clangd = {},
+      clangd = { cmd = { "clangd", "--query-driver=/proj/rbsNodeIfStorage/nodeif/**/x86_64-wrs-linux-g*" } },
       rust_analyzer = {},
       lua_ls = {
         settings = {
